@@ -1,0 +1,27 @@
+import 'package:flutter/material.dart';
+
+class CadastroPage extends StatefulWidget {
+  const CadastroPage({super.key});
+
+  @override
+  State<CadastroPage> createState() => _CadastroPageState();
+}
+
+class _CadastroPageState extends State<CadastroPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: const Color(0xFF4169E1),
+        foregroundColor: const Color(0xFFFFFFFF),
+        title: Text(
+          "Cadrastro",
+          style: TextStyle(
+            fontSize: 25,
+          ),
+        ),
+      ),
+    );
+  }
+}
