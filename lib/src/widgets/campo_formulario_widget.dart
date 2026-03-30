@@ -5,11 +5,13 @@ class CampoFormularioWidget extends StatelessWidget {
   final IconData? icon;
   final TextEditingController controller;
   final bool obscure;
+  final String? Function(String?) validatorless;
 
   const CampoFormularioWidget({
     required this.label,
     required this.controller,
     required this.obscure,
+    required this.validatorless,
     this.icon,
     super.key,
     });
