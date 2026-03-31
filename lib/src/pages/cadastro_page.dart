@@ -1,4 +1,3 @@
-import 'package:app_navegacao/src/pages/home_page.dart';
 import 'package:app_navegacao/src/widgets/botao_widget.dart';
 import 'package:app_navegacao/src/widgets/campo_formulario_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,13 +17,20 @@ class _CadastroPageState extends State<CadastroPage> {
   final confPasswordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  void _resgistrar(){
-    if(formKey.currentState!.validate()){
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_)=> HomePage()), 
-        (route)=>false);
+  void _resgistrar() {
+    if (formKey.currentState!.validate()) {
+      /*Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => HomePage()),
+        (route) => false,
+      );*/
+      Navigator.pushNamedAndRemoveUntil(
+        context, 
+        '/home', 
+        (route)=>false,
+        arguments: emailController.text);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +52,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 label: "Nome",
                 controller: nomeController,
                 obscure: false,
+                icon: Icons.people,
                 validatorless: Validatorless.required("Campo Obrigatório"),
               ),
               SizedBox(height: 15),
@@ -53,6 +60,7 @@ class _CadastroPageState extends State<CadastroPage> {
                 label: "E-mail",
                 controller: emailController,
                 obscure: false,
+                icon: Icons.email,
                 validatorless: Validatorless.multiple([
                   Validatorless.required("Campo Obrigatório"),
                   Validatorless.email("E-mail Inválido"),
@@ -63,9 +71,10 @@ class _CadastroPageState extends State<CadastroPage> {
                 label: "Senha",
                 controller: passwordController,
                 obscure: true,
+                icon: Icons.lock,
                 validatorless: Validatorless.multiple([
                   Validatorless.required("Campo Obrigatório"),
-                  Validatorless.min(8, 'Minimo 8 Caracteres')
+                  Validatorless.min(8, 'Minimo 8 Caracteres'),
                 ]),
               ),
               SizedBox(height: 15),
@@ -73,9 +82,13 @@ class _CadastroPageState extends State<CadastroPage> {
                 label: "Confirmar Senha",
                 controller: confPasswordController,
                 obscure: true,
+                icon: Icons.lock,
                 validatorless: Validatorless.multiple([
-                  Validatorless.required("Campo obrigatorio"),
-                  Validatorless.compare(passwordController, "Senhas diferentes")
+                  Validatorless.required("Campo Obrigatório"),
+                  Validatorless.compare(
+                    passwordController,
+                    "Senhas Diferentes",
+                  ),
                 ]),
               ),
               SizedBox(height: 25),

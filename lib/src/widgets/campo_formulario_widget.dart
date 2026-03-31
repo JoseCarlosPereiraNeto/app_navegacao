@@ -7,6 +7,7 @@ class CampoFormularioWidget extends StatelessWidget {
   final bool obscure;
   final String? Function(String?) validatorless;
 
+
   const CampoFormularioWidget({
     required this.label,
     required this.controller,
@@ -28,6 +29,7 @@ class CampoFormularioWidget extends StatelessWidget {
           prefixIcon: Icon(icon),
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
         ),
+      validator: validatorless,
     );
   }
 }
